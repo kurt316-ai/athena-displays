@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schwarz Family — Fun Board</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1729;
+      --card-bg: #1a2340;
+      --card-hover: #1e2a4a;
+      --text: #e8e8f0;
+      --text-dim: #8888a0;
+      --gold: #f0c040;
+      --blue: #4da6ff;
+      --green: #5cd85c;
+      --purple: #b07aff;
+      --orange: #ff9a3c;
+      --pink: #ff6b9d;
+      --border: #ffffff10;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 20px 0 24px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    /* Person Tabs */
+    .person-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .person-tab {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .person-tab:hover { border-color: var(--gold); color: var(--text); }
+    .person-tab.active { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+
+    /* Section */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .icon { font-size: 22px; }
+
+    /* Activity Cards */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .activity-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .activity-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px #00000040;
+    }
+
+    .activity-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .activity-detail {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .activity-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .tag-outdoor { background: #1a3a1a; color: var(--green); }
+    .tag-game { background: #2a1a3a; color: var(--purple); }
+    .tag-project { background: #1a2a3a; color: var(--blue); }
+    .tag-food { background: #3a2a1a; color: var(--orange); }
+    .tag-adventure { background: #3a1a2a; color: var(--pink); }
+    .tag-movie { background: #2a2a1a; color: var(--gold); }
+
+    /* Simple List */
+    .simple-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .simple-list li {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .simple-list li .when {
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+
+    /* Funnel indicator */
+    .funnel-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding-left: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 430px) {
+      .container { padding: 14px; }
+      .header h1 { font-size: 22px; }
+      .activity-grid { grid-template-columns: 1fr; }
+      .person-tab { padding: 6px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <h1>Schwarz Family Fun Board</h1>
+      <p>Ideas, plans, and what's happening</p>
+    </header>
+
+    <!-- Person Tabs -->
+    <div class="person-tabs">
+      <button class="person-tab active" onclick="showAll()">Everyone</button>
+      <button class="person-tab" onclick="showPerson('ian')">Ian</button>
+      <button class="person-tab" onclick="showPerson('dane')">Dane</button>
+    </div>
+
+    <!-- This Week -->
+    <div class="section-title"><span class="icon">📅</span> This Week</div>
+    <div class="funnel-label">Scheduled — it's happening</div>
+    <ul class="simple-list">
+      <li>
+        <span><strong>Family movie night</strong></span>
+        <span class="when">Friday</span>
+      </li>
+      <li>
+        <span><strong>The Burrow weekend</strong></span>
+        <span class="when">Sat–Sun</span>
+      </li>
+    </ul>
+
+    <!-- Up Next -->
+    <div class="section-title"><span class="icon">🎯</span> Up Next</div>
+    <div class="funnel-label">Picked — figuring out when</div>
+    <ul class="simple-list">
+      <li>
+        <span><strong>Board game tournament</strong> — Risk or Catan?</span>
+        <span class="when">This weekend?</span>
+      </li>
+      <li>
+        <span><strong>Bike ride to the creek</strong></span>
+        <span class="when">Weather permitting</span>
+      </li>
+    </ul>
+
+    <!-- Idea Pool -->
+    <div class="section-title"><span class="icon">💡</span> Idea Pool</div>
+    <div class="funnel-label">Ideas — pick something!</div>
+
+    <div class="activity-grid">
+      <div class="activity-card" data-who="everyone">
+        <div class="activity-name">Backyard campfire</div>
+        <div class="activity-detail">S'mores, stars, stories</div>
+        <span class="activity-tag tag-outdoor">Outdoor</span>
+      </div>
+
+      <div class="activity-card" data-who="ian">
+        <div class="activity-name">Chess marathon</div>
+        <div class="activity-detail">Best of 5 — Ian vs. Dad</div>
+        <span class="activity-tag tag-game">Game</span>
+      </div>
+
+      <div class="activity-card" data-who="dane">
+        <div class="activity-name">LEGO build challenge</div>
+        <div class="activity-detail">30 minutes, same pieces, who builds best?</div>
+        <span class="activity-tag tag-project">Project</span>
+      </div>
+
+      <div class="activity-card" data-who="everyone">
+        <div class="activity-name">Pizza from scratch</div>
+        <div class="activity-detail">Everyone picks their own toppings</div>
+        <span class="activity-tag tag-food">Food</span>
+      </div>
+
+      <div class="activity-card" data-who="ian">
+        <div class="activity-name">Geocaching</div>
+        <div class="activity-detail">Find 3 new caches near Los Altos Hills</div>
+        <span class="activity-tag tag-adventure">Adventure</span>
+      </div>
+
+      <div class="activity-card" data-who="dane">
+        <div class="activity-name">Blanket fort movie</div>
+        <div class="activity-detail">Build the fort, pick the movie</div>
+        <span class="activity-tag tag-movie">Movie</span>
+      </div>
+
+      <div class="activity-card" data-who="everyone">
+        <div class="activity-name">Hike to Black Mountain</div>
+        <div class="activity-detail">Pack snacks, bring binoculars</div>
+        <span class="activity-tag tag-outdoor">Outdoor</span>
+      </div>
+
+      <div class="activity-card" data-who="ian">
+        <div class="activity-name">Code a game together</div>
+        <div class="activity-detail">Scratch or Python — Ian's choice</div>
+        <span class="activity-tag tag-project">Project</span>
+      </div>
+
+      <div class="activity-card" data-who="dane">
+        <div class="activity-name">Treasure hunt</div>
+        <div class="activity-detail">Dad hides clues around the house</div>
+        <span class="activity-tag tag-adventure">Adventure</span>
+      </div>
+
+      <div class="activity-card" data-who="everyone">
+        <div class="activity-name">Family cooking competition</div>
+        <div class="activity-detail">Mystery ingredient challenge</div>
+        <span class="activity-tag tag-food">Food</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showAll() {
+      document.querySelectorAll('.activity-card').forEach(c => c.style.display = '');
+      setActiveTab(null);
+    }
+
+    function showPerson(who) {
+      document.querySelectorAll('.activity-card').forEach(c => {
+        const cardWho = c.getAttribute('data-who');
+        c.style.display = (cardWho === who || cardWho === 'everyone') ? '' : 'none';
+      });
+      setActiveTab(who);
+    }
+
+    function setActiveTab(who) {
+      document.querySelectorAll('.person-tab').forEach(t => t.classList.remove('active'));
+      if (who === null) {
+        document.querySelector('.person-tab:first-child').classList.add('active');
+      } else {
+        document.querySelectorAll('.person-tab').forEach(t => {
+          if (t.textContent.toLowerCase() === who) t.classList.add('active');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
