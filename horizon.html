@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizon — Athena</title>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="display-container">
+
+    <!-- Header -->
+    <header class="display-header">
+      <div>
+        <div class="display-title">Horizon</div>
+        <div class="display-subtitle">Strategic Landscape — All Domains</div>
+      </div>
+      <div class="display-meta" id="last-refreshed"></div>
+    </header>
+
+    <!-- Quick Stats -->
+    <div class="stat-grid">
+      <div class="stat-block">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Strategic Efforts</div>
+        <div class="stat-sublabel">dependency-ordered</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Domain Modules</div>
+        <div class="stat-sublabel">1 operational, 4 pre-op</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">33</div>
+        <div class="stat-label">Inbox Items</div>
+        <div class="stat-sublabel">pending Kurt triage</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">156</div>
+        <div class="stat-label">Sessions</div>
+        <div class="stat-sublabel">total to date</div>
+      </div>
+    </div>
+
+    <!-- Strategic Sequence -->
+    <h2 class="section-title">
+      <span class="kurt-term">The Game Plan</span>
+      <span class="claude-term">Strategic Sequence</span>
+    </h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+      Six efforts in dependency order. Each unlocks the next. Locked Thu 19 Mar 2026.
+    </p>
+
+    <!-- Effort 1 -->
+    <div class="card" style="border-left: 3px solid var(--green);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">1. Four Views</span>
+          <span class="claude-term">Display System Bootstrap</span>
+        </div>
+        <span class="badge badge-status-active">● ACTIVE</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Build the four display views as responsive HTML — desktop, iPad, iPhone. Kurt can't govern what he can't see.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">Why first:</strong> Gate 2 prerequisite for everything below.
+        &nbsp;·&nbsp; <strong style="color: var(--text-muted);">Next:</strong> Design then Build.
+      </div>
+    </div>
+
+    <!-- Effort 2 -->
+    <div class="card" style="border-left: 3px solid var(--orange);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">2. Weekend Batch</span>
+          <span class="claude-term">Automation Queue Planning</span>
+        </div>
+        <span class="badge badge-status-waiting">◐ UP NEXT</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Build a high-conviction queue of autonomous Sonnet sessions for the weekend. Family time — sessions must be fully specified before end of day Thursday.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">Time-boxed:</strong> Thu 19 Mar.
+      </div>
+    </div>
+
+    <!-- Effort 3 -->
+    <div class="card" style="border-left: 3px solid var(--text-dim);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">3. Challenge Mechanism</span>
+          <span class="claude-term">Intelligent Pushback Operationalization</span>
+        </div>
+        <span class="badge badge-status-waiting">○ QUEUED</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Lock down the pushback gradient — the system's own immune system for challenging its decisions. Gate 1 property: the hosting plan gets designed with the challenge mechanism already baked in.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">Why before hosting:</strong> "Intelligent pushback at every level comes before hosting."
+        &nbsp;·&nbsp; <strong style="color: var(--text-muted);">Size:</strong> Tight 2-session DES→BLD.
+      </div>
+    </div>
+
+    <!-- Effort 4 -->
+    <div class="card" style="border-left: 3px solid var(--text-dim);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">4. Go Live</span>
+          <span class="claude-term">Hosting Migration (AWS)</span>
+        </div>
+        <span class="badge badge-status-waiting">○ QUEUED</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Migrate Athena to AWS. GitHub Actions CI/CD, Lambda/ECS, EventBridge scheduling, CloudWatch monitoring. Does NOT block views.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">Depends on:</strong> #3 (pushback operationalized).
+        &nbsp;·&nbsp; <strong style="color: var(--text-muted);">Audience rollout:</strong> Kurt → family → friends → Northslope → Forge → world.
+      </div>
+    </div>
+
+    <!-- Effort 5 -->
+    <div class="card" style="border-left: 3px solid var(--text-dim);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">5. Marvin Wakes Up</span>
+          <span class="claude-term">Marvin Standup</span>
+        </div>
+        <span class="badge badge-status-waiting">○ QUEUED</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Google Calendar API access as first operational capability. BullMQ/Redis architecture, two-switch model, three-channel notifications.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">Depends on:</strong> #4 (hosting).
+        &nbsp;·&nbsp; <strong style="color: var(--text-muted);">Sequence:</strong> Bulk data ingest → context router optimization.
+      </div>
+    </div>
+
+    <!-- Effort 6 -->
+    <div class="card" style="border-left: 3px solid var(--text-dim); opacity: 0.6;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="dual-vocab">
+          <span class="kurt-term">6. Voice</span>
+          <span class="claude-term">Two-Way Voice Sync</span>
+        </div>
+        <span class="badge badge-status-parked">⏸ PARKED</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 8px; font-size: 13px;">
+        Gate 3 optimization (faster input/output). Doesn't unlock any Gate 2 capability. Dispatch just launched — tooling immature.
+      </p>
+    </div>
+
+    <!-- Domain Modules -->
+    <h2 class="section-title">
+      <span class="kurt-term">The Characters</span>
+      <span class="claude-term">Domain Modules</span>
+    </h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">Name</th>
+          <th style="width: 12%;">Status</th>
+          <th style="width: 35%;">Mission</th>
+          <th style="width: 35%;">What It Knows About</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Name"><strong style="color: var(--gold);">Archimedes</strong></td>
+          <td data-label="Status"><span class="badge badge-status-active">Operational</span></td>
+          <td data-label="Mission">Conventions hub — what and how</td>
+          <td data-label="Scope">Standards, session protocol, naming, Touchstone, design principles, Map Ops</td>
+        </tr>
+        <tr>
+          <td data-label="Name"><strong style="color: var(--blue);">Marvin</strong></td>
+          <td data-label="Status"><span class="badge badge-status-preop">Pre-op</span></td>
+          <td data-label="Mission">Operational hub — when and routing</td>
+          <td data-label="Scope">Calendar (22 cals, 5-person family), scheduling, project management, orchestration</td>
+        </tr>
+        <tr>
+          <td data-label="Name"><strong style="color: var(--green);">Dobby</strong></td>
+          <td data-label="Status"><span class="badge badge-status-preop">Pre-op</span></td>
+          <td data-label="Mission">Physical world expert — what and where</td>
+          <td data-label="Scope">4 homes, 4 cars, maintenance, repairs, improvements, durable inventory, spaces</td>
+        </tr>
+        <tr>
+          <td data-label="Name"><strong style="color: #c4a0ff;">Cato</strong></td>
+          <td data-label="Status"><span class="badge badge-status-preop">Pre-op</span></td>
+          <td data-label="Mission">Planning domain — judgment + precision</td>
+          <td data-label="Scope">Northslope plan quality (22 people, 9-part template). Extends to The Forge.</td>
+        </tr>
+        <tr>
+          <td data-label="Name"><strong style="color: var(--red);">Argus</strong> <em style="font-size: 11px;">(proposed)</em></td>
+          <td data-label="Status"><span class="badge badge-status-parked">Proposed</span></td>
+          <td data-label="Mission">Proactive protection of Athena</td>
+          <td data-label="Scope">Gate 1 enforcement, informed decision-making, security posture</td>
+        </tr>
+        <tr>
+          <td data-label="Name"><strong style="color: var(--link);">Hypatia</strong> <em style="font-size: 11px;">(proposed)</em></td>
+          <td data-label="Status"><span class="badge badge-status-parked">Proposed</span></td>
+          <td data-label="Mission">Research in service of protection</td>
+          <td data-label="Scope">Tip of the spear — research → Argus → Athena. Gate 1 chain.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Governing Principles -->
+    <h2 class="section-title">
+      <span class="kurt-term">Ground Rules</span>
+      <span class="claude-term">Governing Principles</span>
+    </h2>
+    <div class="card">
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 8px; color: var(--text-secondary);">
+          <strong style="color: var(--gold);">Safety → Effectiveness → Efficiency.</strong>
+          <span class="claude-term" style="margin-left: 6px;">Gate 1 → Gate 2 → Gate 3</span>
+        </li>
+        <li style="margin-bottom: 8px; color: var(--text-secondary);">
+          <strong style="color: var(--white);">Dependency order respected.</strong>
+          Views → Queue → Pushback → Hosting → Marvin → Voice.
+        </li>
+        <li style="margin-bottom: 8px; color: var(--text-secondary);">
+          <strong style="color: var(--white);">Views are system infrastructure</strong>, not a Marvin feature.
+        </li>
+        <li style="color: var(--text-secondary);">
+          <strong style="color: var(--white);">Pushback is structural, not cosmetic.</strong>
+          The system designs its own hosting plan with its challenge mechanism already active.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="display-nav">
+      <a href="horizon.html" class="nav-link active">Horizon</a>
+      <a href="cockpit.html" class="nav-link">Cockpit</a>
+      <a href="workshop.html" class="nav-link">Workshop</a>
+      <a href="compass.html" class="nav-link">Compass</a>
+    </nav>
+
+  </div>
+  <script src="shared.js"></script>
+</body>
+</html>

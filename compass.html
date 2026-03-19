@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass — Athena</title>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="display-container">
+
+    <!-- Header -->
+    <header class="display-header">
+      <div>
+        <div class="display-title">Compass</div>
+        <div class="display-subtitle">Reference Guide — Shared Vocabulary & Navigation</div>
+      </div>
+      <div class="display-meta" id="last-refreshed"></div>
+    </header>
+
+    <!-- The Touchstone -->
+    <h2 class="section-title">
+      <span class="kurt-term">The Touchstone</span>
+      <span class="claude-term">Master Evaluation Framework</span>
+    </h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">
+      Three gates, always in this order. Everything clears Gate 1 before Gate 2 before Gate 3.
+    </p>
+
+    <div class="card" style="border-left: 3px solid var(--red);">
+      <div class="dual-vocab">
+        <span class="kurt-term" style="font-size: 15px;">Gate 1 — Is it safe?</span>
+        <span class="claude-term">Safety & Security</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 6px; font-size: 13px;">
+        Binary pass/fail. Clears first. Two sides: <strong>Safety</strong> (authorized agents acting wrong) and <strong>Security</strong> (unauthorized access). Nothing else matters until this gate passes.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">As a capacity:</strong> Judgment — the capacity to ask "should this exist?" before "how should this work?"
+      </div>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--orange);">
+      <div class="dual-vocab">
+        <span class="kurt-term" style="font-size: 15px;">Gate 2 — Does it work?</span>
+        <span class="claude-term">Effectiveness</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 6px; font-size: 13px;">
+        Threshold — must work before you optimize. The thing has to actually do what it's supposed to do. No point making something fast if it doesn't work yet.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">As a capacity:</strong> Precision — encoding intent clearly enough that downstream actors can execute without reconstructing your reasoning.
+      </div>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--green);">
+      <div class="dual-vocab">
+        <span class="kurt-term" style="font-size: 15px;">Gate 3 — Is it efficient?</span>
+        <span class="claude-term">Efficiency</span>
+      </div>
+      <p style="color: var(--text-secondary); margin-top: 6px; font-size: 13px;">
+        Continuous improvement — the reward for clearing Gates 1 and 2. Now make it fast, cheap, and elegant. This is where optimization lives.
+      </p>
+      <div style="color: var(--text-dim); font-size: 12px; margin-top: 6px;">
+        <strong style="color: var(--text-muted);">As a capacity:</strong> Execution — deliver efficiently against a clear, well-judged spec.
+      </div>
+    </div>
+
+    <!-- Map Operations -->
+    <h2 class="section-title">
+      <span class="kurt-term">Map Operations</span>
+      <span class="claude-term">Structural Transformation Vocabulary</span>
+    </h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">
+      The shared language for how you and Claude change any plan, roadmap, or knowledge structure. Every operation is a <em>clarification</em> of shared understanding.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">Operation Pair</th>
+          <th style="width: 20%;">Type</th>
+          <th style="width: 50%;">What It Does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Promote</strong> / <strong style="color: var(--white);">Demote</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Vertical movement</td>
+          <td data-label="What">Move something up or down in priority or scope level</td>
+        </tr>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Merge</strong> / <strong style="color: var(--white);">Split</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Structural</td>
+          <td data-label="What">Combine two things into one, or break one thing apart. Original identity is destroyed.</td>
+        </tr>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Rename</strong> / <strong style="color: var(--white);">Alias</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Identity</td>
+          <td data-label="What">Replace a name (Rename) or add an additional name (Alias) without replacing the original</td>
+        </tr>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Group</strong> / <strong style="color: var(--white);">Ungroup</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Containment</td>
+          <td data-label="What">Add or remove a boundary around items. Items inside are preserved. Can be ordered or unordered.</td>
+        </tr>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Add</strong> / <strong style="color: var(--white);">Remove</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Existence</td>
+          <td data-label="What">Create a new thing or delete an existing thing</td>
+        </tr>
+        <tr>
+          <td data-label="Pair">
+            <strong style="color: var(--white);">Reorder</strong>
+          </td>
+          <td data-label="Type" style="color: var(--text-muted);">Sequence (independent)</td>
+          <td data-label="What">Change the order. Logics: Priority, Sequential, Dependency, Scope, Specificity, Arbitrary.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="section-subtitle">Candidate Operations (Under Observation)</h3>
+    <div class="card" style="opacity: 0.7;">
+      <p style="color: var(--text-secondary); font-size: 13px;">
+        <strong style="color: var(--text-muted);">Move</strong> (reparent) ·
+        <strong style="color: var(--text-muted);">Defer / Activate</strong> (horizon boundary) ·
+        <strong style="color: var(--text-muted);">Tag</strong> (metadata) ·
+        <strong style="color: var(--text-muted);">Refine</strong> (semantic precision) ·
+        <strong style="color: var(--text-muted);">Weight</strong> (magnitude/intensity) ·
+        <strong style="color: var(--text-muted);">Correct</strong> (fix signal distortion) ·
+        <strong style="color: var(--text-muted);">Elevate</strong> (promote across categorical boundary)
+      </p>
+      <p style="color: var(--text-dim); font-size: 11px; margin-top: 6px;">
+        Watching for these to surface naturally in sessions. When one appears, Claude names it.
+      </p>
+    </div>
+
+    <!-- Session Types -->
+    <h2 class="section-title">
+      <span class="kurt-term">Session Types</span>
+      <span class="claude-term">Typed Work Units</span>
+    </h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">
+      Every session declares its type. Type determines what tools, protocol, and model to use.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 12%;">Code</th>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 15%;">Model</th>
+          <th style="width: 48%;">When You Use It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Code"><span class="badge badge-exp">EXP</span></td>
+          <td data-label="Name">Explore</td>
+          <td data-label="Model">Opus</td>
+          <td data-label="When">Research, investigate, discover. "What's out there?"</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-des">DES</span></td>
+          <td data-label="Name">Design</td>
+          <td data-label="Model">Opus</td>
+          <td data-label="When">Architect, plan, make structural decisions. "How should this work?"</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-bld">BLD</span></td>
+          <td data-label="Name">Build</td>
+          <td data-label="Model">Sonnet</td>
+          <td data-label="When">Implement from a spec. Mechanical, well-defined. "Make it."</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-ver">VER</span></td>
+          <td data-label="Name">Verify</td>
+          <td data-label="Model">Sonnet</td>
+          <td data-label="When">Test, check, validate. "Does it actually work?"</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-cap">CAP</span></td>
+          <td data-label="Name">Capture</td>
+          <td data-label="Model">Opus</td>
+          <td data-label="When">Record ideas, process inbox, classify and route. "Remember this."</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-org">ORG</span></td>
+          <td data-label="Name">Organize</td>
+          <td data-label="Model">Opus</td>
+          <td data-label="When">Triage, sequence, cluster, prioritize. "Put this in order."</td>
+        </tr>
+        <tr>
+          <td data-label="Code"><span class="badge badge-rev">REV</span></td>
+          <td data-label="Name">Review</td>
+          <td data-label="Model">Opus</td>
+          <td data-label="When">Evaluate health, find patterns, check for drift. "How are we doing?"</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Standing Commands -->
+    <h2 class="section-title">
+      <span class="kurt-term">Quick Commands</span>
+      <span class="claude-term">Standing Commands</span>
+    </h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">
+      Type these at the start of any session. Claude knows what to do.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%;">Say This</th>
+          <th style="width: 50%;">What Happens</th>
+          <th style="width: 30%;">Also Works</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">next</code></td>
+          <td data-label="What">Shows the "What's Next" menu with options</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">what's next, continue</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">inbox</code></td>
+          <td data-label="What">Process pending files in the inbox — classify, stress test, route</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">process inbox</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">CAP</code></td>
+          <td data-label="What">Open a Capture session — inbox files + anything you want to say</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">capture</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">orient</code></td>
+          <td data-label="What">Quick status read — where things stand, what's active</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">status, where are we</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">auto</code></td>
+          <td data-label="What">Full autopilot — picks next autonomous item and runs immediately</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">—</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">close</code></td>
+          <td data-label="What">Run the full session close checklist</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">finish, wrap up</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">horizon</code></td>
+          <td data-label="What">Show the near-term map at requested scope</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">what's on the horizon</td>
+        </tr>
+        <tr>
+          <td data-label="Command"><code style="font-size: 12px; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 4px;">plot</code></td>
+          <td data-label="What">Open roadmap for editing — apply map operations</td>
+          <td data-label="Aliases" style="color: var(--text-dim);">update the map</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Work Modes -->
+    <h2 class="section-title">
+      <span class="kurt-term">How We Work Together</span>
+      <span class="claude-term">Work Modes</span>
+    </h2>
+
+    <div class="card-row">
+      <div class="card">
+        <h3 class="section-subtitle" style="margin-top: 0;">Design then Build</h3>
+        <p style="color: var(--text-secondary); font-size: 12px;">
+          Kurt + Claude design together (Opus). Then Claude builds autonomously after the handoff.
+        </p>
+        <div style="color: var(--text-dim); font-size: 11px; margin-top: 6px;">Model: Opus → Sonnet at the [Fresh] boundary</div>
+      </div>
+      <div class="card">
+        <h3 class="section-subtitle" style="margin-top: 0;">Pair Build</h3>
+        <p style="color: var(--text-secondary); font-size: 12px;">
+          Kurt and Claude working interactively. Kurt provides Gates 1+2 in real time.
+        </p>
+        <div style="color: var(--text-dim); font-size: 11px; margin-top: 6px;">Model: Opus</div>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card">
+        <h3 class="section-subtitle" style="margin-top: 0;">Autonomous Build</h3>
+        <p style="color: var(--text-secondary); font-size: 12px;">
+          Well-specified tasks. Claude runs solo. Mechanical, fully defined scope.
+        </p>
+        <div style="color: var(--text-dim); font-size: 11px; margin-top: 6px;">Model: Sonnet</div>
+      </div>
+      <div class="card" style="opacity: 0.5;">
+        <h3 class="section-subtitle" style="margin-top: 0; color: var(--text-dim);">Placeholder</h3>
+        <p style="color: var(--text-dim); font-size: 12px;">
+          Reserved for personal/passion views as the display system evolves.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="display-nav">
+      <a href="horizon.html" class="nav-link">Horizon</a>
+      <a href="cockpit.html" class="nav-link">Cockpit</a>
+      <a href="workshop.html" class="nav-link">Workshop</a>
+      <a href="compass.html" class="nav-link active">Compass</a>
+    </nav>
+
+  </div>
+  <script src="shared.js"></script>
+</body>
+</html>
