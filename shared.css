@@ -267,6 +267,22 @@ tbody tr:hover {
   opacity: 0.8;
 }
 
+/* === Sticky Top Nav === */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  padding: 10px 24px;
+  margin: 0 -24px 16px -24px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
+  flex-wrap: wrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 /* === Nav bar (bottom) === */
 .display-nav {
   display: flex;
@@ -296,16 +312,34 @@ tbody tr:hover {
 
 /* === Responsive === */
 
+/*
+ * === Device-Adaptive Content Visibility ===
+ * Use these classes to show/hide content per device.
+ * Plain language: "desktop-only" means it only appears on the big screen.
+ * Technical: CSS breakpoint-driven display toggling.
+ *
+ * Classes:
+ *   .desktop-only     — visible on desktop (>1024px), hidden on tablet/phone
+ *   .tablet-up        — visible on tablet+ (>768px), hidden on phone
+ *   .phone-only       — visible on phone only (<=430px)
+ *   .phone-hide       — hidden on phone, visible everywhere else
+ *   .phone-compact    — on phone: smaller text, tighter spacing
+ */
+.phone-only { display: none; }
+
 /* iPad landscape */
 @media (max-width: 1024px) {
   .display-container { padding: 16px 20px; }
+  .top-nav { padding: 10px 20px; margin: 0 -20px 16px -20px; }
   .card-row .card { min-width: 240px; }
   .stat-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .desktop-only { display: none !important; }
 }
 
 /* iPad portrait / small tablets */
 @media (max-width: 768px) {
   .display-container { padding: 14px 16px; }
+  .top-nav { padding: 8px 16px; margin: 0 -16px 12px -16px; }
   .display-title { font-size: 18px; }
   .section-title { font-size: 15px; }
   .card-row { flex-direction: column; }
@@ -314,11 +348,14 @@ tbody tr:hover {
   thead th { padding: 6px 8px; font-size: 10px; }
   tbody td { padding: 6px 8px; }
   .stat-number { font-size: 24px; }
+  .tablet-up { display: none !important; }
 }
 
 /* iPhone */
 @media (max-width: 430px) {
   .display-container { padding: 12px 12px; }
+  .top-nav { padding: 8px 12px; margin: 0 -12px 10px -12px; gap: 4px; }
+  .top-nav .nav-link { font-size: 11px; padding: 4px 8px; }
   .display-header { flex-direction: column; gap: 4px; }
   .display-title { font-size: 16px; }
   .section-title { font-size: 14px; margin-top: 20px; }
@@ -329,6 +366,9 @@ tbody tr:hover {
   .badge { font-size: 10px; padding: 2px 6px; }
   .display-nav { gap: 6px; }
   .nav-link { font-size: 11px; padding: 4px 8px; }
+  .phone-hide { display: none !important; }
+  .phone-only { display: block !important; }
+  .phone-compact { font-size: 12px; line-height: 1.4; }
 
   /* Stack table cells on very small screens */
   thead { display: none; }

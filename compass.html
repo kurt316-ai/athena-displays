@@ -9,6 +9,14 @@
 <body>
   <div class="display-container">
 
+    <!-- Sticky Nav -->
+    <nav class="top-nav">
+      <a href="horizon.html" class="nav-link">Horizon</a>
+      <a href="cockpit.html" class="nav-link">Cockpit</a>
+      <a href="workshop.html" class="nav-link">Workshop</a>
+      <a href="compass.html" class="nav-link active">Compass</a>
+    </nav>
+
     <!-- Header -->
     <header class="display-header">
       <div>
@@ -129,8 +137,8 @@
       </tbody>
     </table>
 
-    <h3 class="section-subtitle">Candidate Operations (Under Observation)</h3>
-    <div class="card" style="opacity: 0.7;">
+    <h3 class="section-subtitle phone-hide">Candidate Operations (Under Observation)</h3>
+    <div class="card phone-hide" style="opacity: 0.7;">
       <p style="color: var(--text-secondary); font-size: 13px;">
         <strong style="color: var(--text-muted);">Move</strong> (reparent) ·
         <strong style="color: var(--text-muted);">Defer / Activate</strong> (horizon boundary) ·
@@ -270,7 +278,8 @@
       </tbody>
     </table>
 
-    <!-- Work Modes -->
+    <!-- Work Modes (hide on phone — too much detail for glancing) -->
+    <div class="phone-hide">
     <h2 class="section-title">
       <span class="kurt-term">How We Work Together</span>
       <span class="claude-term">Work Modes</span>
@@ -307,6 +316,7 @@
         </p>
       </div>
     </div>
+    </div><!-- end phone-hide for Work Modes -->
 
     <!-- Navigation -->
     <nav class="display-nav">
