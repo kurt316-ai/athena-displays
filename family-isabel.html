@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabel — My Page</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .person-header {
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+    .person-header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .person-header p {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .placeholder-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .placeholder-card .emoji { font-size: 32px; margin-bottom: 12px; }
+    .placeholder-card h3 { color: var(--white); font-size: 16px; margin-bottom: 8px; }
+    .placeholder-card p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="display-container">
+
+    <header class="person-header">
+      <h1>Isabel</h1>
+      <p>Schedule, activities, and your stuff</p>
+    </header>
+
+    <!-- Calendar -->
+    <div class="section-title">My Schedule</div>
+    <div class="placeholder-card">
+      <div class="emoji">📅</div>
+      <h3>Calendar view coming soon</h3>
+      <p>Your schedule, driving duties, and upcoming events.</p>
+    </div>
+
+    <!-- Activities -->
+    <div class="section-title">Activities & Ideas</div>
+    <div class="placeholder-card">
+      <div class="emoji">💡</div>
+      <h3>Your space</h3>
+      <p>Activity ideas, things you want to plan, whatever you want to track. Add ideas anytime.</p>
+    </div>
+
+    <!-- Nav -->
+    <nav class="display-nav">
+      <a href="family-hub.html" class="nav-link">Family Hub</a>
+      <a href="family-isabel.html" class="nav-link active">Isabel</a>
+      <a href="family.html" class="nav-link">Fun Board</a>
+    </nav>
+  </div>
+</body>
+</html>

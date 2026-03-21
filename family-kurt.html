@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurt — My Dashboard</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .person-header {
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+    .person-header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .person-header p {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .placeholder-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .placeholder-card .emoji { font-size: 32px; margin-bottom: 12px; }
+    .placeholder-card h3 { color: var(--white); font-size: 16px; margin-bottom: 8px; }
+    .placeholder-card p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .quick-link {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .quick-link:hover { background: var(--bg-card-hover); border-color: var(--gold-dim); }
+    .quick-link .link-label { color: var(--text-muted); font-size: 11px; font-weight: 400; display: block; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="display-container">
+
+    <header class="person-header">
+      <h1>Kurt</h1>
+      <p>Founder dashboard — everything at a glance</p>
+    </header>
+
+    <!-- Quick Links to Athena Views -->
+    <div class="section-title">Quick Links</div>
+    <div class="quick-links">
+      <a href="horizon.html" class="quick-link">Horizon <span class="link-label">Strategic landscape</span></a>
+      <a href="cockpit.html" class="quick-link">Cockpit <span class="link-label">Daily driver</span></a>
+      <a href="workshop.html" class="quick-link">Workshop <span class="link-label">Project deep dive</span></a>
+      <a href="compass.html" class="quick-link">Compass <span class="link-label">Reference guide</span></a>
+      <a href="family.html" class="quick-link">Family Board <span class="link-label">Activities & fun</span></a>
+    </div>
+
+    <!-- Calendar Summary -->
+    <div class="section-title">Today's Calendar</div>
+    <div class="placeholder-card">
+      <div class="emoji">📅</div>
+      <h3>Calendar view coming soon</h3>
+      <p>Daily calendar summary with enroute times, color coding, and conflict alerts. Powered by the Marvin calendar scrubber.</p>
+    </div>
+
+    <!-- Active Projects -->
+    <div class="section-title">Active Projects</div>
+    <div class="placeholder-card">
+      <div class="emoji">🔨</div>
+      <h3>Project tracker coming soon</h3>
+      <p>Current build sessions, next actions, and queue items across all domain modules.</p>
+    </div>
+
+    <!-- Family Hub -->
+    <div class="section-title">Family Quick View</div>
+    <div class="quick-links">
+      <a href="family-erika.html" class="quick-link">Erika <span class="link-label">Schedule & activities</span></a>
+      <a href="family-ian.html" class="quick-link">Ian <span class="link-label">Activities & schedule</span></a>
+      <a href="family-dane.html" class="quick-link">Dane <span class="link-label">Activities & schedule</span></a>
+      <a href="family-isabel.html" class="quick-link">Isabel <span class="link-label">Activities & schedule</span></a>
+    </div>
+
+    <!-- Nav -->
+    <nav class="display-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="family-hub.html" class="nav-link">Family Hub</a>
+      <a href="family-kurt.html" class="nav-link active">Kurt</a>
+    </nav>
+  </div>
+</body>
+</html>
