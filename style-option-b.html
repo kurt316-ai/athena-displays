@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option B — Clean Light</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #f5f5f7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #fafafa;
+      --text-primary: #1d1d1f;
+      --text-secondary: #424245;
+      --text-dim: #86868b;
+      --gold: #e8890c;
+      --accent-ian: #6366f1;
+      --accent-dane: #10b981;
+      --accent-kurt: #3b82f6;
+      --accent-erika: #ec4899;
+      --accent-isabel: #a855f7;
+      --border-subtle: #e5e5ea;
+      --border-light: #d2d2d7;
+      --white: #ffffff;
+      --radius-lg: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Text", "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      padding: 0; margin: 0; min-height: 100vh;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 20px 24px; }
+
+    .option-badge {
+      display: inline-block;
+      background: var(--accent-ian);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .family-header {
+      text-align: center;
+      padding: 16px 0 20px;
+    }
+    .family-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .family-header .subtitle { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+    .family-header .date-line {
+      color: var(--text-dim); font-size: 11px; margin-top: 6px;
+      font-family: "SF Mono", "Fira Code", monospace;
+    }
+
+    .person-tabs {
+      display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .person-tab {
+      padding: 7px 18px; border-radius: 20px; border: 2px solid var(--border-subtle);
+      background: transparent; color: var(--text-dim); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .person-tab:hover { border-color: var(--accent-ian); color: var(--text-primary); }
+    .person-tab.active { background: var(--accent-ian); color: #fff; border-color: var(--accent-ian); }
+
+    .section-head {
+      font-size: 16px; font-weight: 700; color: var(--text-primary);
+      margin: 24px 0 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .section-head .icon { font-size: 20px; }
+    .section-label {
+      font-size: 11px; color: var(--text-dim); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 8px; padding-left: 2px;
+    }
+
+    .schedule-list { list-style: none; padding: 0; }
+    .schedule-list li {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: 8px; padding: 10px 14px; margin-bottom: 6px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 13px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .schedule-list li .when {
+      color: var(--text-dim); font-size: 11px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      flex-shrink: 0; margin-left: 12px;
+    }
+
+    .activity-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
+    }
+    .activity-card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg); padding: 14px; transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .activity-card:hover {
+      background: var(--bg-card-hover); transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .activity-name { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+    .activity-detail { font-size: 11px; color: var(--text-dim); }
+    .activity-tag {
+      display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 7px;
+      border-radius: 10px; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .tag-lacrosse { background: #dcfce7; color: #166534; }
+    .tag-music { background: #fef3c7; color: #92400e; }
+    .tag-school { background: #dbeafe; color: #1e40af; }
+
+    .placeholder-card {
+      background: var(--bg-card); border: 2px dashed var(--border-light);
+      border-radius: var(--radius-lg); padding: 20px; text-align: center;
+    }
+    .placeholder-card h3 { color: var(--text-primary); font-size: 14px; margin-bottom: 4px; }
+    .placeholder-card p { color: var(--text-dim); font-size: 12px; }
+
+    .family-footer {
+      text-align: center; margin-top: 32px; padding-top: 16px;
+      border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 11px;
+    }
+
+    @media (max-width: 430px) {
+      .family-header h1 { font-size: 20px; }
+      .person-tab { padding: 6px 12px; font-size: 12px; }
+      .activity-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div style="text-align:center;"><span class="option-badge">Option B — Clean Light</span></div>
+
+    <header class="family-header">
+      <h1>Schwarz Family</h1>
+      <div class="subtitle">Enter the Forge</div>
+      <div class="date-line">Sat 21 Mar 2026</div>
+    </header>
+
+    <div class="person-tabs">
+      <button class="person-tab">Everyone</button>
+      <button class="person-tab active">Ian</button>
+      <button class="person-tab">Dane</button>
+      <button class="person-tab">Kurt</button>
+      <button class="person-tab">Erika</button>
+      <button class="person-tab">Isabel</button>
+    </div>
+
+    <div class="section-head"><span class="icon">📅</span> This Week</div>
+    <div class="section-label">Ian's schedule — week of Mar 16–22</div>
+    <ul class="schedule-list">
+      <li><span><strong>Lacrosse — 12U Maroon practice</strong></span><span class="when">Mon/Tue/Thu</span></li>
+      <li><span><strong>Lacrosse — 12U White practice</strong></span><span class="when">Sat/Thu</span></li>
+      <li><span><strong>Lacrosse — 12U Maroon @ Redhawks</strong> (game)</span><span class="when">Sat</span></li>
+      <li><span><strong>Practice @ Cubberley Football Field</strong></span><span class="when">Tue/Thu 1600</span></li>
+      <li><span><strong>Clarinet</strong> — with Teacher Claudiu</span><span class="when">Wed 1530–1600</span></li>
+      <li><span><strong>Piano</strong> — with Robbie</span><span class="when">Thu 1900–1930</span></li>
+      <li><span><strong>Beginners Band</strong></span><span class="when">Thu (school)</span></li>
+      <li><span><strong>Math Club Practice</strong></span><span class="when">Wed (school)</span></li>
+      <li><span><strong>Birthday celebration at the Burrow!</strong></span><span class="when">Sat</span></li>
+    </ul>
+
+    <div class="section-head"><span class="icon">⚡</span> My Activities</div>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <div class="activity-name">Lacrosse — 12U Maroon</div>
+        <div class="activity-detail">Primary team. Mon/Tue/Thu practices + Sat games</div>
+        <span class="activity-tag tag-lacrosse">Lacrosse</span>
+      </div>
+      <div class="activity-card">
+        <div class="activity-name">Lacrosse — 12U White</div>
+        <div class="activity-detail">Second team. Practices + games</div>
+        <span class="activity-tag tag-lacrosse">Lacrosse</span>
+      </div>
+      <div class="activity-card">
+        <div class="activity-name">Clarinet</div>
+        <div class="activity-detail">Wednesdays with Teacher Claudiu</div>
+        <span class="activity-tag tag-music">Music</span>
+      </div>
+      <div class="activity-card">
+        <div class="activity-name">Piano</div>
+        <div class="activity-detail">Thursdays with Robbie</div>
+        <span class="activity-tag tag-music">Music</span>
+      </div>
+      <div class="activity-card">
+        <div class="activity-name">Beginners Band</div>
+        <div class="activity-detail">School band — Thursdays</div>
+        <span class="activity-tag tag-school">School</span>
+      </div>
+      <div class="activity-card">
+        <div class="activity-name">Math Club</div>
+        <div class="activity-detail">Practice Wednesdays at school</div>
+        <span class="activity-tag tag-school">School</span>
+      </div>
+    </div>
+
+    <div class="section-head"><span class="icon">💡</span> Ideas</div>
+    <div class="placeholder-card">
+      <h3>Your ideas go here</h3>
+      <p>Tell Dad what activities or plans you want — they'll show up here.</p>
+    </div>
+
+    <div class="family-footer">
+      Enter the Forge · Family Display · Prototype
+    </div>
+  </div>
+</body>
+</html>
