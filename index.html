@@ -3,91 +3,408 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athena — Display System</title>
+  <title>Schwarz Family — Enter the Forge</title>
   <link rel="stylesheet" href="shared.css">
+  <style>
+    /* === Family Display Overrides === */
+    .family-header {
+      text-align: center;
+      padding: 16px 0 20px;
+    }
+    .family-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .family-header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .family-header .date-line {
+      color: var(--text-dim);
+      font-size: 11px;
+      margin-top: 6px;
+      font-family: "SF Mono", "Fira Code", monospace;
+    }
+
+    /* Tabs */
+    .person-tabs {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .person-tab {
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: 2px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .person-tab:hover { border-color: var(--gold); color: var(--text-primary); }
+    .person-tab.active { background: var(--gold); color: var(--bg-primary); border-color: var(--gold); }
+
+    /* Person accent colors */
+    .person-tab[data-person="ian"]:hover { border-color: #9a9cff; }
+    .person-tab[data-person="ian"].active { background: #9a9cff; border-color: #9a9cff; }
+    .person-tab[data-person="dane"]:hover { border-color: #92e1c0; }
+    .person-tab[data-person="dane"].active { background: #92e1c0; border-color: #92e1c0; }
+    .person-tab[data-person="kurt"]:hover { border-color: #4986e7; }
+    .person-tab[data-person="kurt"].active { background: #4986e7; border-color: #4986e7; }
+    .person-tab[data-person="erika"]:hover { border-color: #e06080; }
+    .person-tab[data-person="erika"].active { background: #e06080; border-color: #e06080; }
+    .person-tab[data-person="isabel"]:hover { border-color: #c4a0ff; }
+    .person-tab[data-person="isabel"].active { background: #c4a0ff; border-color: #c4a0ff; }
+
+    /* Person panel */
+    .person-panel { display: none; }
+    .person-panel.active { display: block; }
+
+    /* Section headers */
+    .section-head {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-head .icon { font-size: 20px; }
+    .section-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding-left: 2px;
+    }
+
+    /* Schedule list */
+    .schedule-list { list-style: none; padding: 0; }
+    .schedule-list li {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .schedule-list li .when {
+      color: var(--text-dim);
+      font-size: 11px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    /* Activity grid */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .activity-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      transition: all 0.2s;
+    }
+    .activity-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px #00000030;
+    }
+    .activity-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .activity-detail { font-size: 11px; color: var(--text-dim); }
+    .activity-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tag-lacrosse { background: #1a3a1a; color: #a8d8a8; }
+    .tag-music { background: #2a2a1a; color: #f0c040; }
+    .tag-school { background: #1a2a3a; color: #8eaadc; }
+    .tag-game { background: #2a1a3a; color: #c4a0ff; }
+    .tag-outdoor { background: #1a3a2a; color: #60e0c0; }
+    .tag-food { background: #3a2a1a; color: #e8a040; }
+    .tag-adventure { background: #3a1a2a; color: #ff6b9d; }
+    .tag-build { background: #1a2a3a; color: #6ea8fe; }
+
+    /* Everyone view — person headers */
+    .person-section-header {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 20px 0 8px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* Placeholder */
+    .placeholder-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+    }
+    .placeholder-card h3 { color: var(--text-primary); font-size: 14px; margin-bottom: 4px; }
+    .placeholder-card p { color: var(--text-dim); font-size: 12px; }
+
+    /* Footer */
+    .family-footer {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-dim);
+      font-size: 11px;
+    }
+
+    @media (max-width: 430px) {
+      .family-header h1 { font-size: 20px; }
+      .person-tab { padding: 6px 12px; font-size: 12px; }
+      .activity-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <div class="display-container" style="max-width: 600px; padding-top: 60px;">
-    <div style="text-align: center;">
-      <div class="display-title" style="font-size: 28px; margin-bottom: 8px;">Athena</div>
-      <div class="display-subtitle" style="margin-bottom: 40px;">Display System</div>
+  <div class="display-container" style="max-width: 800px;">
+
+    <header class="family-header">
+      <h1>Schwarz Family</h1>
+      <div class="subtitle">Enter the Forge</div>
+      <div class="date-line" id="today-date"></div>
+    </header>
+
+    <!-- Person Tabs -->
+    <div class="person-tabs">
+      <button class="person-tab active" data-person="everyone" onclick="showPerson('everyone')">Everyone</button>
+      <button class="person-tab" data-person="ian" onclick="showPerson('ian')">Ian</button>
+      <button class="person-tab" data-person="dane" onclick="showPerson('dane')">Dane</button>
+      <button class="person-tab" data-person="kurt" onclick="showPerson('kurt')">Kurt</button>
+      <button class="person-tab" data-person="erika" onclick="showPerson('erika')">Erika</button>
+      <button class="person-tab" data-person="isabel" onclick="showPerson('isabel')">Isabel</button>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-      <a href="horizon.html" style="text-decoration: none;">
-        <div class="card" style="border-left: 3px solid var(--gold); cursor: pointer;">
-          <div class="dual-vocab">
-            <span class="kurt-term" style="font-size: 16px;">Horizon</span>
-            <span class="claude-term">Strategic Landscape</span>
-          </div>
-          <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-            Zoomed back — all domains, the game plan, where everything stands.
-          </p>
-        </div>
-      </a>
+    <!-- ===== EVERYONE PANEL ===== -->
+    <div class="person-panel active" id="panel-everyone">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="section-label">Week of Mar 16 – Mar 22, 2026</div>
 
-      <a href="cockpit.html" style="text-decoration: none;">
-        <div class="card" style="border-left: 3px solid var(--green); cursor: pointer;">
-          <div class="dual-vocab">
-            <span class="kurt-term" style="font-size: 16px;">Cockpit</span>
-            <span class="claude-term">Daily Driver</span>
-          </div>
-          <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-            What's happening now — active focus, next up, inbox state.
-          </p>
-        </div>
-      </a>
+      <div class="person-section-header" style="background: #1a1a3e; color: #b0b2ff;">Ian</div>
+      <ul class="schedule-list">
+        <li><span><strong>Lacrosse — 12U Maroon practice</strong></span><span class="when">Mon/Tue/Thu</span></li>
+        <li><span><strong>Lacrosse — 12U White practice</strong></span><span class="when">Sat/Thu</span></li>
+        <li><span><strong>Lacrosse — 12U Maroon @ Redhawks</strong> (game)</span><span class="when">Sat</span></li>
+        <li><span><strong>Practice @ Cubberley Football Field</strong></span><span class="when">Tue/Thu</span></li>
+        <li><span><strong>Clarinet</strong> — Teacher Claudiu</span><span class="when">Wed 1530</span></li>
+        <li><span><strong>Piano</strong> — Teacher Robbie</span><span class="when">Thu 1900</span></li>
+        <li><span><strong>Beginners Band</strong> (school)</span><span class="when">Thu</span></li>
+        <li><span><strong>Math Club</strong> (school)</span><span class="when">Wed</span></li>
+      </ul>
 
-      <a href="workshop.html" style="text-decoration: none;">
-        <div class="card" style="border-left: 3px solid var(--blue); cursor: pointer;">
-          <div class="dual-vocab">
-            <span class="kurt-term" style="font-size: 16px;">Workshop</span>
-            <span class="claude-term">Project View</span>
-          </div>
-          <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-            One project deep — queue, health, inbox clusters, active work.
-          </p>
-        </div>
-      </a>
+      <div class="person-section-header" style="background: #0d2e2a; color: #92e1c0;">Dane</div>
+      <ul class="schedule-list">
+        <li><span><strong>Lacrosse — 8U @ Redhawks</strong> (games)</span><span class="when">Sat x2</span></li>
+        <li><span><strong>Practice @ Cubberley North 7v7</strong></span><span class="when">Tue/Thu</span></li>
+        <li><span><strong>Piano</strong> — Teacher Eli</span><span class="when">Wed 1530</span></li>
+      </ul>
 
-      <a href="compass.html" style="text-decoration: none;">
-        <div class="card" style="border-left: 3px solid #c4a0ff; cursor: pointer;">
-          <div class="dual-vocab">
-            <span class="kurt-term" style="font-size: 16px;">Compass</span>
-            <span class="claude-term">Reference Guide</span>
-          </div>
-          <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-            Shared vocabulary — Touchstone, Map Ops, session types, commands.
-          </p>
-        </div>
-      </a>
+      <div class="person-section-header" style="background: #0d1b2e; color: #6ea8fe;">Family</div>
+      <ul class="schedule-list">
+        <li><span><strong>The Burrow weekend</strong></span><span class="when">Sat–Sun</span></li>
+        <li><span><strong>Ian's birthday celebration</strong> at the Burrow</span><span class="when">Sat</span></li>
+      </ul>
     </div>
 
-    <div style="margin-top: 32px; border-top: 1px solid var(--border-light); padding-top: 20px;">
-      <div class="display-subtitle" style="margin-bottom: 12px;">Family</div>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <a href="family-hub.html" style="text-decoration: none;">
-          <div class="card" style="border-left: 3px solid var(--orange); cursor: pointer;">
-            <span class="kurt-term" style="font-size: 16px;">Family Hub</span>
-            <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-              Everyone's pages — click through to individual dashboards.
-            </p>
-          </div>
-        </a>
-        <a href="family.html" style="text-decoration: none;">
-          <div class="card" style="border-left: 3px solid var(--orange); cursor: pointer;">
-            <span class="kurt-term" style="font-size: 16px;">Fun Board</span>
-            <p style="color: var(--text-muted); margin-top: 4px; font-size: 13px;">
-              Family activities, ideas, and what's happening this week.
-            </p>
-          </div>
-        </a>
+    <!-- ===== IAN PANEL ===== -->
+    <div class="person-panel" id="panel-ian">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="section-label">Ian's schedule — week of Mar 16–22</div>
+      <ul class="schedule-list">
+        <li><span><strong>Lacrosse — 12U Maroon practice</strong></span><span class="when">Mon/Tue/Thu</span></li>
+        <li><span><strong>Lacrosse — 12U White practice</strong></span><span class="when">Sat/Thu</span></li>
+        <li><span><strong>Lacrosse — 12U Maroon @ Redhawks</strong> (game)</span><span class="when">Sat</span></li>
+        <li><span><strong>Practice @ Cubberley Football Field</strong></span><span class="when">Tue/Thu 1600</span></li>
+        <li><span><strong>Clarinet</strong> — with Teacher Claudiu</span><span class="when">Wed 1530–1600</span></li>
+        <li><span><strong>Piano</strong> — with Robbie</span><span class="when">Thu 1900–1930</span></li>
+        <li><span><strong>Beginners Band</strong></span><span class="when">Thu (school)</span></li>
+        <li><span><strong>Math Club Practice</strong></span><span class="when">Wed (school)</span></li>
+        <li><span><strong>Birthday celebration at the Burrow!</strong></span><span class="when">Sat</span></li>
+      </ul>
+
+      <div class="section-head"><span class="icon">⚡</span> My Activities</div>
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-name">Lacrosse — 12U Maroon</div>
+          <div class="activity-detail">Primary team. Mon/Tue/Thu practices + Sat games</div>
+          <span class="activity-tag tag-lacrosse">Lacrosse</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Lacrosse — 12U White</div>
+          <div class="activity-detail">Second team. Practices + games</div>
+          <span class="activity-tag tag-lacrosse">Lacrosse</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Clarinet</div>
+          <div class="activity-detail">Wednesdays with Teacher Claudiu</div>
+          <span class="activity-tag tag-music">Music</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Piano</div>
+          <div class="activity-detail">Thursdays with Robbie</div>
+          <span class="activity-tag tag-music">Music</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Beginners Band</div>
+          <div class="activity-detail">School band — Thursdays</div>
+          <span class="activity-tag tag-school">School</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Math Club</div>
+          <div class="activity-detail">Practice Wednesdays at school</div>
+          <span class="activity-tag tag-school">School</span>
+        </div>
+      </div>
+
+      <div class="section-head"><span class="icon">💡</span> Ideas</div>
+      <div class="placeholder-card">
+        <h3>Your ideas go here</h3>
+        <p>Tell Dad what activities or plans you want — they'll show up here.</p>
       </div>
     </div>
 
-    <div style="text-align: center; margin-top: 40px; color: var(--text-dim); font-size: 11px;">
-      Athena Display System · v1.1 · Fri 20 Mar 2026
+    <!-- ===== DANE PANEL ===== -->
+    <div class="person-panel" id="panel-dane">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="section-label">Dane's schedule — week of Mar 16–22</div>
+      <ul class="schedule-list">
+        <li><span><strong>Lacrosse — 8U @ Redhawks</strong> (games)</span><span class="when">Sat (2 games)</span></li>
+        <li><span><strong>Practice @ Cubberley North 7v7</strong></span><span class="when">Tue/Thu</span></li>
+        <li><span><strong>Piano</strong> — with Teacher Eli</span><span class="when">Wed 1530–1600</span></li>
+        <li><span><strong>Ian's birthday at the Burrow!</strong></span><span class="when">Sat</span></li>
+      </ul>
+
+      <div class="section-head"><span class="icon">⚡</span> My Activities</div>
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-name">Lacrosse — 8U</div>
+          <div class="activity-detail">Tue/Thu practices at Cubberley North + Sat games</div>
+          <span class="activity-tag tag-lacrosse">Lacrosse</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Piano</div>
+          <div class="activity-detail">Wednesdays with Teacher Eli</div>
+          <span class="activity-tag tag-music">Music</span>
+        </div>
+      </div>
+
+      <div class="section-head"><span class="icon">💡</span> Ideas</div>
+      <div class="placeholder-card">
+        <h3>Your ideas go here</h3>
+        <p>Tell Dad what you want to do — it'll show up here!</p>
+      </div>
     </div>
+
+    <!-- ===== KURT PANEL ===== -->
+    <div class="person-panel" id="panel-kurt">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="section-label">Kurt's schedule — week of Mar 16–22</div>
+      <ul class="schedule-list">
+        <li><span><strong>Physical Therapy</strong> — Dr. Gregory Moses</span><span class="when">Tue/Fri</span></li>
+        <li><span><strong>VMB sessions</strong> — vision rewrite teams</span><span class="when">Mon–Fri (various)</span></li>
+        <li><span><strong>Ian birthday celebration</strong> at the Burrow</span><span class="when">Sat</span></li>
+      </ul>
+
+      <div class="section-head"><span class="icon">⚡</span> Recurring</div>
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-name">6:00 AM</div>
+          <div class="activity-detail">Daily early start</div>
+          <span class="activity-tag tag-outdoor">Routine</span>
+        </div>
+        <div class="activity-card">
+          <div class="activity-name">Kid logistics</div>
+          <div class="activity-detail">Pickup/dropoff — Hillview, Bowman, Cubberley</div>
+          <span class="activity-tag tag-adventure">Family</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ERIKA PANEL ===== -->
+    <div class="person-panel" id="panel-erika">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="section-label">Erika's schedule — week of Mar 16–22</div>
+      <ul class="schedule-list">
+        <li><span><strong>Las Vegas — March Madness</strong></span><span class="when">Thu–Sat</span></li>
+        <li><span><strong>Fasted blood draw</strong></span><span class="when">Mon</span></li>
+        <li><span><strong>SL Parent Meeting</strong> — Unit 6 (online)</span><span class="when">Wed</span></li>
+        <li><span><strong>Kid pickup route</strong> — Bowman → Cubberley</span><span class="when">Tue/Thu 1530</span></li>
+      </ul>
+    </div>
+
+    <!-- ===== ISABEL PANEL ===== -->
+    <div class="person-panel" id="panel-isabel">
+      <div class="section-head"><span class="icon">📅</span> This Week</div>
+      <div class="placeholder-card">
+        <h3>Coming soon</h3>
+        <p>Isabel's schedule and activities will be added here.</p>
+      </div>
+    </div>
+
+    <div class="family-footer">
+      Enter the Forge · Family Display · Prototype
+      <div id="last-refreshed" style="margin-top: 4px;"></div>
+    </div>
+
   </div>
+
+  <script src="shared.js"></script>
+  <script>
+    // Set today's date from system clock
+    (function() {
+      const now = new Date();
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const d = days[now.getDay()];
+      const dd = now.getDate();
+      const m = months[now.getMonth()];
+      const y = now.getFullYear();
+      const el = document.getElementById('today-date');
+      if (el) el.textContent = d + ' ' + dd + ' ' + m + ' ' + y;
+    })();
+
+    // Tab switching
+    function showPerson(who) {
+      // Update tabs
+      document.querySelectorAll('.person-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector('.person-tab[data-person="' + who + '"]').classList.add('active');
+
+      // Update panels
+      document.querySelectorAll('.person-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + who).classList.add('active');
+    }
+  </script>
 </body>
 </html>
